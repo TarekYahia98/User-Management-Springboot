@@ -1,39 +1,59 @@
 package user_management_app.com.demo.model;
 
 import jakarta.persistence.*;
-import lombok.*;
-//import lombok.Data;
-//import lombok.Getter;
-//import lombok.Setter;
+import lombok.ToString;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Setter(AccessLevel.NONE)
     private Long id;
 
+    @Column(name = "name")
     private String name;
+
+    @Column(name = "username")
     private String username;
+
+    @Column(name = "email")
     private String email;
 
     @Embedded
+    @ToString.Exclude
     private Address address;
 
+    @Column(name = "phone")
     private String phone;
+
+    @Column(name = "website")
     private String website;
 
     @Embedded
+    @AttributeOverrides({
+            @AttributeOverride(name = "name", column = @Column(name = "company_name")),
+            @AttributeOverride(name = "catchPhrase", column = @Column(name = "company_catch_phrase")),
+            @AttributeOverride(name = "bs", column = @Column(name = "company_bs"))
+    })
+    @ToString.Exclude
     private Company company;
 
+    @Column(name = "age")
     private Integer age;
+
+    @Column(name = "salary")
     private Double salary;
 
+    // Getter and Setter for id
     public Long getId() {
         return id;
     }
 
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    // Getter and Setter for name
     public String getName() {
         return name;
     }
@@ -42,6 +62,7 @@ public class User {
         this.name = name;
     }
 
+    // Getter and Setter for username
     public String getUsername() {
         return username;
     }
@@ -50,6 +71,7 @@ public class User {
         this.username = username;
     }
 
+    // Getter and Setter for email
     public String getEmail() {
         return email;
     }
@@ -58,6 +80,7 @@ public class User {
         this.email = email;
     }
 
+    // Getter and Setter for address
     public Address getAddress() {
         return address;
     }
@@ -66,6 +89,7 @@ public class User {
         this.address = address;
     }
 
+    // Getter and Setter for phone
     public String getPhone() {
         return phone;
     }
@@ -74,6 +98,7 @@ public class User {
         this.phone = phone;
     }
 
+    // Getter and Setter for website
     public String getWebsite() {
         return website;
     }
@@ -82,6 +107,7 @@ public class User {
         this.website = website;
     }
 
+    // Getter and Setter for company
     public Company getCompany() {
         return company;
     }
@@ -90,6 +116,7 @@ public class User {
         this.company = company;
     }
 
+    // Getter and Setter for age
     public Integer getAge() {
         return age;
     }
@@ -98,6 +125,7 @@ public class User {
         this.age = age;
     }
 
+    // Getter and Setter for salary
     public Double getSalary() {
         return salary;
     }
@@ -107,47 +135,6 @@ public class User {
     }
 }
 
-//@Setter
-//@Getter
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Embeddable
-class Address {
-    private String street;
-    private String suite;
-    private String city;
-    private String zipcode;
 
-    @Embedded
-    private Geo geo;
-
-}
-
-//@Setter
-//@Getter
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Embeddable
-class Geo {
-    private String lat;
-    private String lng;
-
-}
-
-//@Setter
-//@Getter
-@Data
-@AllArgsConstructor
-@NoArgsConstructor
-@Embeddable
-class Company {
-    // Getters and Setters
-    private String name;
-    private String catchPhrase;
-    private String bs;
-
-}
 
 
