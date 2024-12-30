@@ -20,7 +20,7 @@ public class Main {
 			System.out.println("Hello to User Management App Server");
 
 			int retries = 5;
-			int delay = 2000;
+			int delay = 5000;
 			boolean connected = false;
 
 			for (int i = 0; i < retries; i++) {

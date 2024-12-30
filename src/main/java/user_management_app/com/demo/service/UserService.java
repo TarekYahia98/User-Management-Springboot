@@ -2,6 +2,8 @@ package user_management_app.com.demo.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import user_management_app.com.demo.model.User;
 import user_management_app.com.demo.repository.UserRepository;
 import org.springframework.http.HttpStatus;
@@ -26,7 +28,8 @@ public class UserService {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    public ResponseEntity<User> createUser(User user) {
+    @PostMapping("/addUser")
+    public ResponseEntity<User> createUser(@RequestBody User user) {
         User savedUser = userRepository.save(user);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedUser);
     }
@@ -39,10 +42,17 @@ public class UserService {
             user.setName(userDetails.getName());
             user.setUsername(userDetails.getUsername());
             user.setEmail(userDetails.getEmail());
-            user.setAddress(userDetails.getAddress());
+            user.setAddressStreet(userDetails.getAddressStreet());
+            user.setAddressSuite(userDetails.getAddressSuite());
+            user.setAddressCity(userDetails.getAddressCity());
+            user.setAddressZipcode(userDetails.getAddressZipcode());
+            user.setAddressGeoLat(userDetails.getAddressGeoLat());
+            user.setAddressGeoLng(userDetails.getAddressGeoLng());
             user.setPhone(userDetails.getPhone());
             user.setWebsite(userDetails.getWebsite());
-            user.setCompany(userDetails.getCompany());
+            user.setCompanyName(userDetails.getCompanyName());
+            user.setCompanyCatchPhrase(userDetails.getCompanyCatchPhrase());
+            user.setCompanyBs(userDetails.getCompanyBs());
             user.setAge(userDetails.getAge());
             user.setSalary(userDetails.getSalary());
 
@@ -52,6 +62,7 @@ public class UserService {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
     }
+
 
 
 

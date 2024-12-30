@@ -1,11 +1,17 @@
 package user_management_app.com.demo.model;
 
 import jakarta.persistence.*;
-import lombok.ToString;
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
 @Table(name = "users")
+@Data
+//@Getter
+//@Setter
 public class User {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -19,9 +25,23 @@ public class User {
     @Column(name = "email")
     private String email;
 
-    @Embedded
-    @ToString.Exclude
-    private Address address;
+    @Column(name = "address_street")
+    private String addressStreet;
+
+    @Column(name = "address_suite")
+    private String addressSuite;
+
+    @Column(name = "address_city")
+    private String addressCity;
+
+    @Column(name = "address_zipcode")
+    private String addressZipcode;
+
+    @Column(name = "address_geo_lat")
+    private String addressGeoLat;
+
+    @Column(name = "address_geo_lng")
+    private String addressGeoLng;
 
     @Column(name = "phone")
     private String phone;
@@ -29,14 +49,14 @@ public class User {
     @Column(name = "website")
     private String website;
 
-    @Embedded
-    @AttributeOverrides({
-            @AttributeOverride(name = "name", column = @Column(name = "company_name")),
-            @AttributeOverride(name = "catchPhrase", column = @Column(name = "company_catch_phrase")),
-            @AttributeOverride(name = "bs", column = @Column(name = "company_bs"))
-    })
-    @ToString.Exclude
-    private Company company;
+    @Column(name = "company_name")
+    private String companyName;
+
+    @Column(name = "company_catch_phrase")
+    private String companyCatchPhrase;
+
+    @Column(name = "company_bs")
+    private String companyBs;
 
     @Column(name = "age")
     private Integer age;
@@ -44,7 +64,6 @@ public class User {
     @Column(name = "salary")
     private Double salary;
 
-    // Getter and Setter for id
     public Long getId() {
         return id;
     }
@@ -53,7 +72,6 @@ public class User {
         this.id = id;
     }
 
-    // Getter and Setter for name
     public String getName() {
         return name;
     }
@@ -62,7 +80,6 @@ public class User {
         this.name = name;
     }
 
-    // Getter and Setter for username
     public String getUsername() {
         return username;
     }
@@ -71,7 +88,6 @@ public class User {
         this.username = username;
     }
 
-    // Getter and Setter for email
     public String getEmail() {
         return email;
     }
@@ -80,16 +96,54 @@ public class User {
         this.email = email;
     }
 
-    // Getter and Setter for address
-    public Address getAddress() {
-        return address;
+    public String getAddressStreet() {
+        return addressStreet;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAddressStreet(String addressStreet) {
+        this.addressStreet = addressStreet;
     }
 
-    // Getter and Setter for phone
+    public String getAddressSuite() {
+        return addressSuite;
+    }
+
+    public void setAddressSuite(String addressSuite) {
+        this.addressSuite = addressSuite;
+    }
+
+    public String getAddressCity() {
+        return addressCity;
+    }
+
+    public void setAddressCity(String addressCity) {
+        this.addressCity = addressCity;
+    }
+
+    public String getAddressZipcode() {
+        return addressZipcode;
+    }
+
+    public void setAddressZipcode(String addressZipcode) {
+        this.addressZipcode = addressZipcode;
+    }
+
+    public String getAddressGeoLat() {
+        return addressGeoLat;
+    }
+
+    public void setAddressGeoLat(String addressGeoLat) {
+        this.addressGeoLat = addressGeoLat;
+    }
+
+    public String getAddressGeoLng() {
+        return addressGeoLng;
+    }
+
+    public void setAddressGeoLng(String addressGeoLng) {
+        this.addressGeoLng = addressGeoLng;
+    }
+
     public String getPhone() {
         return phone;
     }
@@ -98,7 +152,6 @@ public class User {
         this.phone = phone;
     }
 
-    // Getter and Setter for website
     public String getWebsite() {
         return website;
     }
@@ -107,16 +160,30 @@ public class User {
         this.website = website;
     }
 
-    // Getter and Setter for company
-    public Company getCompany() {
-        return company;
+    public String getCompanyName() {
+        return companyName;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCompanyName(String companyName) {
+        this.companyName = companyName;
     }
 
-    // Getter and Setter for age
+    public String getCompanyCatchPhrase() {
+        return companyCatchPhrase;
+    }
+
+    public void setCompanyCatchPhrase(String companyCatchPhrase) {
+        this.companyCatchPhrase = companyCatchPhrase;
+    }
+
+    public String getCompanyBs() {
+        return companyBs;
+    }
+
+    public void setCompanyBs(String companyBs) {
+        this.companyBs = companyBs;
+    }
+
     public Integer getAge() {
         return age;
     }
@@ -125,7 +192,6 @@ public class User {
         this.age = age;
     }
 
-    // Getter and Setter for salary
     public Double getSalary() {
         return salary;
     }
@@ -134,6 +200,8 @@ public class User {
         this.salary = salary;
     }
 }
+
+
 
 
 
